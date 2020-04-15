@@ -1,0 +1,13 @@
+server:
+  port: 8781
+  name: prod
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+    type-aliases-package: com.demo.business.entity #指定实体类位置
+    mapper-locations: classpath:mapper/*Mapper.xml  #指定xml文件位置，classpath代表resources目录下的文件
+    check-config-location: true

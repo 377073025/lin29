@@ -1,0 +1,48 @@
+server:
+  port: 8780
+  name: dev
+spring:
+  datasource:
+    username: root
+    password:
+    url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #热部署前端配置，线上禁用，本地开发用
+  thymeleaf:
+      cache: false #禁用缓存
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+  redis:
+    host: 127.0.0.1
+    database: 4
+    port: 6379
+    timeout: 10000
+    jedis:
+      pool:
+        max-active:  8 #最大连接数
+        max-wait: -1   #最大阻塞等待时间(负数表示没限制)
+        max-idle: 8  #最大空闲
+        min-idle: 0  #最小空闲
+#mybatis:
+#    type-aliases-package: com.demo.business.entity #指定实体类位置
+#    mapper-locations: classpath:mapper/*Mapper.xml  #指定xml文件位置，classpath代表resources目录下的文件
+#    check-config-location: true
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.demo.business.entity
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 0
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 1
+    #驼峰下划线转换
+    db-column-underline: true
+    logic-delete-value: 1
+    logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+logging:
+  level:
+    com.lin.mapper: debug
