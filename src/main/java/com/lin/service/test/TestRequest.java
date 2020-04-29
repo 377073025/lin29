@@ -15,6 +15,6 @@ public class TestRequest {
 
     @NotNull
     @ApiModelProperty(value = "1", required = true)
-    private Integer id;
+    private String id;
 
 }
